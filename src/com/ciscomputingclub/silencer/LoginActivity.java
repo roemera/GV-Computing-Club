@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 /****************************************************************
  * com.ciscomputingclub.silencer.LoginActivity
- * @author Caleb Gomer
+ * @author Caleb Gomeration
  * @version 1.0
  ***************************************************************/
 public class LoginActivity extends Activity implements
