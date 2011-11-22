@@ -1,3 +1,4 @@
+
 /** LoginActivity.java */
 package com.ciscomputingclub.silencer;
 
@@ -18,7 +19,7 @@ import android.widget.TextView;
 /****************************************************************
  * com.ciscomputingclub.silencer.LoginActivity
  * @author Caleb Gomer
- * @version 1.0 HELLO FROM MY NEW COMPUTER
+ * @version 1.0 NO!
  ***************************************************************/
 public class LoginActivity extends Activity implements
     OnClickListener {
