@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 /****************************************************************
  * com.ciscomputingclub.silencer.datatypes.DayOfWeek
+ * 
  * @author Caleb Gomer
  * @version 1.0
  ***************************************************************/
@@ -32,11 +33,11 @@ public class DayOfWeek {
 			s[i] = events.get(i).getTitle();
 		return s;
 	}
-	
+
 	public String stringatize() {
 		String s = "";
 		for (Event e : events)
-			s+=e.stringatize();
+			s += e.stringatize();
 		return s;
 	}
 

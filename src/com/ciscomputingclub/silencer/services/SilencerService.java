@@ -21,6 +21,7 @@ import com.ciscomputingclub.silencer.R;
 
 /****************************************************************
  * com.ciscomputingclub.silencer.services.SilencerService
+ * 
  * @author Caleb Gomer
  * @version 1.0
  ***************************************************************/
@@ -43,11 +44,10 @@ public class SilencerService extends Service {
 		public void run() {
 			Log.d(TAG, "Timer task starting work");// LOG
 			/**
-			 * Check to see if user manually silenced phone, and
-			 * act accordingly
-			 * do not turn ringer back on if user silenced it manually,
-			 * and make sure ringer comes back on after event passes
-			 * (as long as Silencer initially silenced volume)
+			 * Check to see if user manually silenced phone, and act accordingly
+			 * do not turn ringer back on if user silenced it manually, and make
+			 * sure ringer comes back on after event passes (as long as Silencer
+			 * initially silenced volume)
 			 **/
 
 			AudioManager aManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -58,8 +58,8 @@ public class SilencerService extends Service {
 			// int newRingerMode = ringerMode(data.getString("data",
 			// "NEVER"));
 			int newRingerMode = ringerMode(PreferenceManager
-			    .getDefaultSharedPreferences(getBaseContext())
-			    .getString("data", "NEVER"));
+					.getDefaultSharedPreferences(getBaseContext()).getString(
+							"data", "NEVER"));
 			switch (newRingerMode) {
 			case 0:
 				ringerMode = AudioManager.RINGER_MODE_NORMAL;
@@ -75,19 +75,17 @@ public class SilencerService extends Service {
 				break;
 			default:
 				/*
-				 * notify user of error and ask what ringer mode they
-				 * would like
+				 * notify user of error and ask what ringer mode they would like
 				 */
 				break;
 			}
 			if (!(ringerMode == aManager.getRingerMode())) {
-				Intent intent = new Intent(
-				    "AudioManager.RINGER_MODE_NORMAL");
+				Intent intent = new Intent("AudioManager.RINGER_MODE_NORMAL");
 				intent.putExtra("silenced", true);
 
 				aManager.setRingerMode(ringerMode);
 				notifyUser("Silencer", "Ringer Mode Changed: "
-				    + stringify(PHONEMODE), "Silencer Notification");
+						+ stringify(PHONEMODE), "Silencer Notification");
 			}
 			Log.d(TAG, "Timer task done working");// LOG
 		}
@@ -112,7 +110,7 @@ public class SilencerService extends Service {
 		timer = new Timer("SilencerTimer");
 		timer.scheduleAtFixedRate(silencerTask, 1 * s, 30 * s);
 		((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE))
-		    .cancel(SILENCER_NOTIFICATION);
+				.cancel(SILENCER_NOTIFICATION);
 		PHONEMODE = -1;
 	}
 
@@ -125,7 +123,7 @@ public class SilencerService extends Service {
 		timer.cancel();
 		timer = null;
 		((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE))
-		    .cancel(SILENCER_NOTIFICATION);
+				.cancel(SILENCER_NOTIFICATION);
 		PHONEMODE = -1;
 	}
 
@@ -133,23 +131,20 @@ public class SilencerService extends Service {
 	 * void
 	 ***************************************************************/
 	private void notifyUser(String contentTitle, String contentText,
-	    String tickerText) {
+			String tickerText) {
 		String ns = Context.NOTIFICATION_SERVICE;
 		NotificationManager notificationManager = (NotificationManager) getSystemService(ns);
 		int icon = R.drawable.silencer;
 		long when = System.currentTimeMillis();
-		Notification notification = new Notification(icon,
-		    tickerText, when);
+		Notification notification = new Notification(icon, tickerText, when);
 
 		Context context = getApplicationContext();
-		Intent notificationIntent = new Intent(this,
-		    SilencerService.class);
-		PendingIntent contentIntent = PendingIntent.getActivity(this,
-		    0, notificationIntent, 0);
-		notification.setLatestEventInfo(context, contentTitle,
-		    contentText, contentIntent);
-		notificationManager.notify(SILENCER_NOTIFICATION,
-		    notification);
+		Intent notificationIntent = new Intent(this, SilencerService.class);
+		PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+				notificationIntent, 0);
+		notification.setLatestEventInfo(context, contentTitle, contentText,
+				contentIntent);
+		notificationManager.notify(SILENCER_NOTIFICATION, notification);
 	}
 
 	/****************************************************************
@@ -171,26 +166,21 @@ public class SilencerService extends Service {
 		String minute = ((min < 10) ? "0" : "") + min;
 		String currentTime = hour + minute;
 
-		String[][] silenceArray = new String[timesToSilence
-		    .split("\n").length][];
+		String[][] silenceArray = new String[timesToSilence.split("\n").length][];
 
 		for (int i = 0; i < silenceArray.length; i++) {
-			silenceArray[i] = timesToSilence.split("\n")[i]
-			    .split("\t");
+			silenceArray[i] = timesToSilence.split("\n")[i].split("\t");
 		}
 
 		int dayOfWeek = now.get(Calendar.DAY_OF_WEEK) - 1;
-		for (int i = 1; i < silenceArray[dayOfWeek].length
-		    && !silenced; i++) {
+		for (int i = 1; i < silenceArray[dayOfWeek].length && !silenced; i++) {
 
-			String[] silenceBetween = silenceArray[dayOfWeek][i]
-			    .split("\r");
+			String[] silenceBetween = silenceArray[dayOfWeek][i].split("\r");
 
 			int currentTimeInt = Integer.parseInt(currentTime);
 			int startEvent = Integer.parseInt(silenceBetween[0]);
 			int endEvent = Integer.parseInt(silenceBetween[1]);
-			if (currentTimeInt >= startEvent - 1
-			    && currentTimeInt <= endEvent) {
+			if (currentTimeInt >= startEvent - 1 && currentTimeInt <= endEvent) {
 				silenced = true;
 				if (silenceBetween.length > 2)
 					vibration = silenceBetween[2].equals("V");

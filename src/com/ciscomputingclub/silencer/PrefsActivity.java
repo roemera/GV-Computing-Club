@@ -8,6 +8,7 @@ import android.view.MenuItem;
 
 /****************************************************************
  * com.ciscomputingclub.silencer.PrefsActivity
+ * 
  * @author Caleb Gomer
  * @version 1.0
  ***************************************************************/
@@ -33,6 +34,5 @@ public class PrefsActivity extends PreferenceActivity {
 		}
 		return false;
 	}
-	
-	
+
 }

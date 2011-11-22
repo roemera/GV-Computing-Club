@@ -32,6 +32,7 @@ import android.util.Log;
 
 /****************************************************************
  * com.ciscomputingclub.silencer.BannerScraper
+ * 
  * @author Caleb Gomer
  * @version 1.0
  ***************************************************************/
@@ -54,16 +55,16 @@ public class BannerScraper {
 		HttpParams params = new BasicHttpParams();
 		HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);
 		HttpProtocolParams.setContentCharset(params,
-		    HTTP.DEFAULT_CONTENT_CHARSET);
+				HTTP.DEFAULT_CONTENT_CHARSET);
 		HttpProtocolParams.setUseExpectContinue(params, true);
 
 		SchemeRegistry schReg = new SchemeRegistry();
 		schReg.register(new Scheme("http", PlainSocketFactory
-		    .getSocketFactory(), 80));
-		schReg.register(new Scheme("https", SSLSocketFactory
-		    .getSocketFactory(), 443));
+				.getSocketFactory(), 80));
+		schReg.register(new Scheme("https",
+				SSLSocketFactory.getSocketFactory(), 443));
 		ClientConnectionManager conMgr = new ThreadSafeClientConnManager(
-		    params, schReg);
+				params, schReg);
 
 		return new DefaultHttpClient(conMgr, params);
 	}
@@ -76,14 +77,10 @@ public class BannerScraper {
 			HttpPost httppost = new HttpPost(URL);
 			httppost.setHeader("Cookie", "TESTID=SET");
 
-			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
-			    2);
-			nameValuePairs.add(new BasicNameValuePair("sid",
-			    userGNumber));
-			nameValuePairs.add(new BasicNameValuePair("PIN",
-			    userPassword));
-			httppost.setEntity(new UrlEncodedFormEntity(
-			    nameValuePairs));
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			nameValuePairs.add(new BasicNameValuePair("sid", userGNumber));
+			nameValuePairs.add(new BasicNameValuePair("PIN", userPassword));
+			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 			HttpResponse response = httpclient.execute(httppost);
 			// content = response.getEntity().getContent();
@@ -93,8 +90,7 @@ public class BannerScraper {
 			// response.getAllHeaders()[1].getName();
 			// Content-Length sessionId +=
 			// response.getAllHeaders()[2].getName();
-			sessionId = response.getAllHeaders()[3].getValue().split(
-			    "=")[1];
+			sessionId = response.getAllHeaders()[3].getValue().split("=")[1];
 			// Keep Alive sessionId +=
 			// response.getAllHeaders()[5].getName();
 
@@ -103,8 +99,8 @@ public class BannerScraper {
 		}
 		/*
 		 * try { landingPage = Jsoup.parse(content, null,
-		 * "https://mybanner.gvsu.edu/"); } catch (IOException e) { //
-		 * TODO Auto-generated catch block e.printStackTrace(); }
+		 * "https://mybanner.gvsu.edu/"); } catch (IOException e) { // TODO
+		 * Auto-generated catch block e.printStackTrace(); }
 		 */
 		// return landingPage.body().text();
 		return sessionId;
@@ -118,14 +114,11 @@ public class BannerScraper {
 			HttpClient httpclient = createHttpClient();
 			HttpPost httppost = new HttpPost(weekURL);
 			httppost.setHeader("Cookie", "TESTID=SET;SESSID="
-			    + fetchSessionId());
+					+ fetchSessionId());
 
-			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
-			    2);
-			nameValuePairs.add(new BasicNameValuePair("term_in",
-			    "201210"));
-			httppost.setEntity(new UrlEncodedFormEntity(
-			    nameValuePairs));
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			nameValuePairs.add(new BasicNameValuePair("term_in", "201210"));
+			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 			HttpResponse response = httpclient.execute(httppost);
 			content = response.getEntity().getContent();
@@ -146,14 +139,13 @@ public class BannerScraper {
 
 		try {
 			landingPage = Jsoup.parse(content, null,
-			    "https://mybanner.gvsu.edu/");
+					"https://mybanner.gvsu.edu/");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		Elements tableRows = landingPage
-		    .select("table[summary*=BORDER]");
+		Elements tableRows = landingPage.select("table[summary*=BORDER]");
 
 		return tableRows.toString();
 		// return sessionId;

@@ -3,6 +3,7 @@ package com.ciscomputingclub.silencer.datatypes;
 
 /****************************************************************
  * com.ciscomputingclub.silencer.datatypes.Event
+ * 
  * @author Caleb Gomer
  * @version 1.0
  ***************************************************************/
@@ -21,11 +22,8 @@ public class Event {
 	 * @param end
 	 * @param vibrate
 	 ***************************************************************/
-	public Event(String title,
-	    String subtitle,
-	    int start,
-	    int end,
-	    boolean vibrate) {
+	public Event(String title, String subtitle, int start, int end,
+			boolean vibrate) {
 
 		this.title = title;
 		this.subtitle = subtitle;
@@ -33,10 +31,10 @@ public class Event {
 		this.end = end;
 		this.vibrate = vibrate;
 	}
-	
+
 	public String stringatize() {
 		String s = "";
-		s+=title+"";
+		s += title + "";
 		return s;
 	}
 
@@ -76,35 +74,40 @@ public class Event {
 	}
 
 	/****************************************************************
-	 * @param title the title to set
+	 * @param title
+	 *            the title to set
 	 ***************************************************************/
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
 	/****************************************************************
-	 * @param subtitle the subtitle to set
+	 * @param subtitle
+	 *            the subtitle to set
 	 ***************************************************************/
 	public void setSubtitle(String subtitle) {
 		this.subtitle = subtitle;
 	}
 
 	/****************************************************************
-	 * @param start the start to set
+	 * @param start
+	 *            the start to set
 	 ***************************************************************/
 	public void setStart(int start) {
 		this.start = start;
 	}
 
 	/****************************************************************
-	 * @param end the end to set
+	 * @param end
+	 *            the end to set
 	 ***************************************************************/
 	public void setEnd(int end) {
 		this.end = end;
 	}
 
 	/****************************************************************
-	 * @param vibrate the vibrate to set
+	 * @param vibrate
+	 *            the vibrate to set
 	 ***************************************************************/
 	public void setVibrate(boolean vibrate) {
 		this.vibrate = vibrate;

@@ -3,8 +3,6 @@ package com.ciscomputingclub.silencer;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -22,11 +20,11 @@ import com.ciscomputingclub.silencer.views.ClassListItem;
 
 /****************************************************************
  * com.ciscomputingclub.silencer.ClassesActivity
+ * 
  * @author Caleb Gomer
  * @version 1.0
  ***************************************************************/
-public class ClassesActivity extends Activity implements
-    OnClickListener {
+public class ClassesActivity extends Activity implements OnClickListener {
 
 	/** LinearLayout layout */
 	LinearLayout layout;
@@ -49,15 +47,14 @@ public class ClassesActivity extends Activity implements
 		// "ClassTimes", 0);
 
 		// String classNames = classData.getString("data", "");
-		String classNames = PreferenceManager
-		    .getDefaultSharedPreferences(this).getString("data",
-		        "NEVER");
+		String classNames = PreferenceManager.getDefaultSharedPreferences(this)
+				.getString("data", "NEVER");
 		if (!classNames.equals("")) {
 			String[] newString = classNames.split("\n");
 			String[] classNamesList = classNames.split("\t");
 			for (String className : classNamesList) {
 				ClassListItem classItem = new ClassListItem(
-				    getApplicationContext(), className);
+						getApplicationContext(), className);
 				layout.addView(classItem);
 			}
 		}
@@ -73,10 +70,8 @@ public class ClassesActivity extends Activity implements
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.start_service:
-			Toast.makeText(this, "SilencerService Started",
-			    Toast.LENGTH_LONG);
-			Intent i = new Intent(getBaseContext(),
-			    SilencerService.class);
+			Toast.makeText(this, "SilencerService Started", Toast.LENGTH_LONG);
+			Intent i = new Intent(getBaseContext(), SilencerService.class);
 			startService(i);
 			break;
 		}
@@ -106,26 +101,24 @@ public class ClassesActivity extends Activity implements
 			// "ClassTimes", 0);
 			// classData.edit().putString("data", "").commit();
 			PreferenceManager
-			    .getDefaultSharedPreferences(getApplicationContext())
-			    .edit().putString("data", "").commit();
+					.getDefaultSharedPreferences(getApplicationContext())
+					.edit().putString("data", "").commit();
 			Intent stopService = new Intent(getBaseContext(),
-			    SilencerService.class);
+					SilencerService.class);
 			stopService(stopService);
 			Intent loginIntent = new Intent(getBaseContext(),
-			    LoginActivity.class);
+					LoginActivity.class);
 			startActivity(loginIntent);
 			finish();
 			result = true;
 			break;
 		case R.id.stop_service:
-			Intent i1 = new Intent(getBaseContext(),
-			    SilencerService.class);
+			Intent i1 = new Intent(getBaseContext(), SilencerService.class);
 			stopService(i1);
 			result = true;
 			break;
 		case R.id.prefs:
-			Intent i2 = new Intent(getBaseContext(),
-			    PrefsActivity.class);
+			Intent i2 = new Intent(getBaseContext(), PrefsActivity.class);
 			startActivity(i2);
 			result = true;
 			break;

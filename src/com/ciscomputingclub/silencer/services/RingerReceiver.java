@@ -14,6 +14,7 @@ import com.ciscomputingclub.silencer.R;
 
 /****************************************************************
  * com.ciscomputingclub.silencer.services.RingerReciever
+ * 
  * @author Caleb Gomer
  * @version 1.0
  ***************************************************************/
@@ -22,7 +23,8 @@ public class RingerReceiver extends BroadcastReceiver {
 	public static final int RINGER_NOTIFICATION = 2;
 
 	/****************************************************************
-	 * @see android.content.BroadcastReceiver#onReceive(android.content.Context, android.content.Intent)
+	 * @see android.content.BroadcastReceiver#onReceive(android.content.Context,
+	 *      android.content.Intent)
 	 * @param context
 	 * @param intent
 	 ***************************************************************/
@@ -30,10 +32,9 @@ public class RingerReceiver extends BroadcastReceiver {
 		int shouldBe = SilencerService.PHONEMODE;
 		if (shouldBe != -1) {
 			int ringerMode = ((AudioManager) context
-			    .getSystemService(Context.AUDIO_SERVICE))
-			    .getRingerMode();
-			Log.d("debug", "RingerMode: " + ringerMode
-			    + " Should be: " + SilencerService.PHONEMODE);// LOG
+					.getSystemService(Context.AUDIO_SERVICE)).getRingerMode();
+			Log.d("debug", "RingerMode: " + ringerMode + " Should be: "
+					+ SilencerService.PHONEMODE);// LOG
 			if (ringerMode != SilencerService.PHONEMODE) {
 				Log.d("debug", "Turning Off Service");// LOG
 				Intent i = new Intent(context, SilencerService.class);
@@ -43,8 +44,7 @@ public class RingerReceiver extends BroadcastReceiver {
 				Log.d("debug", "Leaving Service On");
 			}
 		} else {
-			Log.d("debug",
-			    "Service Not Started, Ignoring Volume Change");
+			Log.d("debug", "Service Not Started, Ignoring Volume Change");
 		}
 	}
 
@@ -55,23 +55,21 @@ public class RingerReceiver extends BroadcastReceiver {
 
 		String ns = Context.NOTIFICATION_SERVICE;
 		NotificationManager notificationManager = (NotificationManager) context
-		    .getSystemService(ns);
+				.getSystemService(ns);
 		int icon = R.drawable.silencer;
 		CharSequence tickerText = "Auto-silencer disabled";
 		long when = System.currentTimeMillis();
-		Notification notification = new Notification(icon,
-		    tickerText, when);
+		Notification notification = new Notification(icon, tickerText, when);
 
 		CharSequence contentTitle = "Silencer Disabled";
 		CharSequence contentText = "Click here to re-enable";
-		Intent notificationIntent = new Intent(context,
-		    SilencerService.class);
+		Intent notificationIntent = new Intent(context, SilencerService.class);
 		notificationIntent
-		    .setAction("com.ciscomputingclub.silencer.services.SilencerService");
-		PendingIntent contentIntent = PendingIntent.getActivity(
-		    context, 0, notificationIntent, 0);
-		notification.setLatestEventInfo(context, contentTitle,
-		    contentText, contentIntent);
+				.setAction("com.ciscomputingclub.silencer.services.SilencerService");
+		PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
+				notificationIntent, 0);
+		notification.setLatestEventInfo(context, contentTitle, contentText,
+				contentIntent);
 		notificationManager.notify(RINGER_NOTIFICATION, notification);
 	}
 
