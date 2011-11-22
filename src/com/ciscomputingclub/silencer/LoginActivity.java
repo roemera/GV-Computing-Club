@@ -18,7 +18,7 @@ import android.widget.TextView;
 /****************************************************************
  * com.ciscomputingclub.silencer.LoginActivity
  * @author Caleb Gomer
- * @version 1.0 RANDOM TEXT
+ * @version 1.0 HELLO FROM MY NEW COMPUTER
  ***************************************************************/
 public class LoginActivity extends Activity implements
     OnClickListener {
