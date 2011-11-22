@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="gvsu_blue">#0000A4</color>
+	<color name="background_color">#C8C8C8</color>
+	<color name="titlebackgroundcolor">#3232CD</color>
+	<color name="titletextcolor">#FFFF00</color>
+	<color name="white">#FFFFFF</color>
+	<color name="black">#000000</color>
+</resources>

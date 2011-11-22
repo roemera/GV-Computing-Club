@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceCategory
+		android:title="Silence Times">
+		<CheckBoxPreference
+			android:key="silence"
+			android:title="Auto-Silence Ringer"
+			android:summary="Enable automatic ringer silencing"
+			android:defaultValue="True" />
+		<ListPreference
+			android:key="efficiency"
+			android:title="Efficiency/Frequency"
+			summary="Shorter times will decrease battery life"
+			defaultValue="60000L"
+			dependency="silence" />
+	</PreferenceCategory>
+	<PreferenceCategory
+		title="DEBUG: Data"
+		key="debug_data">
+		<EditTextPreference
+			android:key="data"
+			android:title="Debug Data"
+			android:summary="DEBUG: Change ringer data"
+			android:dialogTitle="Ringer Data"
+			android:dialogMessage="Edit ringer data"
+			android:defaultValue="Default Data" />
+	</PreferenceCategory>
+</PreferenceScreen>

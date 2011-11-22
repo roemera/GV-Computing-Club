@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:gravity="center_horizontal"
+	android:background="@color/white">
+	<TextView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_weight="1" />
+	<TextView
+		android:id="@+id/mybanner"
+		android:text="MyBanner Login"
+		android:textColor="@color/gvsu_blue"
+		android:textSize="15pt"
+		android:padding="10sp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	<EditText
+		android:id="@+id/username"
+		android:hint="username"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:singleLine="True"
+		android:minWidth="200sp" />
+	<EditText
+		android:id="@+id/password"
+		android:hint="password"
+		android:inputType="textPassword"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:singleLine="True"
+		android:minWidth="200sp">
+		<requestFocus></requestFocus>
+	</EditText>
+	<Button
+		android:id="@+id/button_start"
+		android:text="Get Schedule"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	<ImageView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_weight="1" />
+</LinearLayout>
