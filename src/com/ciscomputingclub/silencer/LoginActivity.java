@@ -1,3 +1,4 @@
+
 /** LoginActivity.java */
 package com.ciscomputingclub.silencer;
 
