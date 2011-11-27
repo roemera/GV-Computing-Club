@@ -81,9 +81,9 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 		SharedPreferences prefs = PreferenceManager
 				.getDefaultSharedPreferences(this);
-		// Log.d("debug", prefs.getString("banner_data", ""));
-		// showDialog(prefs.getString("banner_data", ""), "Data for "
-		// + gNumber.toUpperCase());
+		Log.d("debug", prefs.getString("banner_data", ""));
+		showDialog(prefs.getString("banner_data", ""), "Data for "
+		+ gNumber.toUpperCase());
 
 		String data = ""
 				+ "Su\t0000\r0500\rS\rSleeping\rXXX\t0630\r1530\rV\rWork\rXXX\n"
