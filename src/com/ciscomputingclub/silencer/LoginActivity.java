@@ -14,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /****************************************************************
  * com.ciscomputingclub.silencer.LoginActivity
@@ -78,6 +79,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 			}
 		};
 		scrapeThread.start();
+		
+		Toast.makeText(getApplicationContext(), "Getting Banner Data", 10);
 
 		SharedPreferences prefs = PreferenceManager
 				.getDefaultSharedPreferences(this);
