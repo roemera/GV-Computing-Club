@@ -23,7 +23,7 @@ import com.ciscomputingclub.silencer.views.ClassListItem;
 /****************************************************************
  * com.ciscomputingclub.silencer.ClassesActivity
  * 
- * @author Caleb Gomer
+ * @author GVSU Computing Club
  * @version 1.0
  ***************************************************************/
 public class ClassesActivity extends Activity implements

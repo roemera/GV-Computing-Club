@@ -33,7 +33,7 @@ import android.util.Log;
 /****************************************************************
  * com.ciscomputingclub.silencer.BannerScraper
  * 
- * @author Caleb Gomer
+ * @author GVSU Computing Club
  * @version 1.0
  ***************************************************************/
 public class BannerScraper {
