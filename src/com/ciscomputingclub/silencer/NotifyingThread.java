@@ -4,6 +4,8 @@ package com.ciscomputingclub.silencer;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
+import android.os.Looper;
+
 /****************************************************************
  * com.ciscomputingclub.silencer.NotifyingThread
  * @author Caleb Gomer
@@ -11,6 +13,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  ***************************************************************/
 public abstract class NotifyingThread extends Thread {
 	private final Set<ThreadCompleteListener> listeners = new CopyOnWriteArraySet<ThreadCompleteListener>();
+	private String extras = new String();
 
 	public final void addListener(
 	    final ThreadCompleteListener listener) {
@@ -27,15 +30,20 @@ public abstract class NotifyingThread extends Thread {
 			listener.notifyOfThreadComplete(this);
 		}
 	}
+	
+	public final String getExtras() {
+		return extras;
+	}
 
 	@Override
 	public final void run() {
+		Looper.prepare();
 		try {
-			runThenNotify();
+			extras = runThenNotify();
 		} finally {
 			notifyListeners();
 		}
 	}
 
-	public abstract void runThenNotify();
+	public abstract String runThenNotify();
 }

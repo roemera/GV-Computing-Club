@@ -7,5 +7,5 @@ package com.ciscomputingclub.silencer;
  * @version 1.0
  ***************************************************************/
 public interface ThreadCompleteListener {
-	void notifyOfThreadComplete(final Thread thread);
+	void notifyOfThreadComplete(final NotifyingThread thread);
 }
